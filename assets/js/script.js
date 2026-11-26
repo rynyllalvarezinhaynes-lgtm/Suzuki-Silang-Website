@@ -278,48 +278,4 @@
     });
   });
 
-  /* ---------- Inquiry form ---------- */
-  var inquiryForm = $("#form");
-  var inquiryStatus = $("#formOk");
-  var inquiryButton = $("button[type='submit']", inquiryForm);
-  inquiryForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    inquiryStatus.hidden = true;
-    inquiryStatus.classList.remove("form-error");
-    inquiryButton.disabled = true;
-    inquiryButton.textContent = "Sending...";
-    var values = new FormData(inquiryForm);
-    try {
-      var csrfResponse = await fetch("/api/auth/csrf", { credentials: "same-origin" });
-      var csrfPayload = await csrfResponse.json();
-      if (!csrfResponse.ok) throw new Error(csrfPayload.error || "Could not start the inquiry form.");
-      var response = await fetch("/api/inquiries", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfPayload.csrfToken
-        },
-        body: JSON.stringify({
-          name: values.get("name"),
-          phone: values.get("phone"),
-          email: values.get("email"),
-          modelSlug: values.get("model"),
-          intent: values.get("intent"),
-          message: values.get("message")
-        })
-      });
-      var result = await response.json();
-      if (!response.ok) throw new Error(result.error || "The inquiry could not be sent.");
-      inquiryStatus.textContent = "Thanks. Your inquiry was sent to Suzuki Auto Silang.";
-      inquiryForm.reset();
-    } catch (error) {
-      inquiryStatus.textContent = error.message || "The inquiry could not be sent. Please try again.";
-      inquiryStatus.classList.add("form-error");
-    } finally {
-      inquiryStatus.hidden = false;
-      inquiryButton.disabled = false;
-      inquiryButton.textContent = "Send Inquiry";
-    }
-  });
 })();
