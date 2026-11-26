@@ -46,6 +46,24 @@ h1 span { color: var(--red); }
 .summary-card { padding: 14px; border-radius: 12px; background: var(--page); }
 .summary-card strong { display: block; color: var(--red); font: 700 30px/1 "Barlow Condensed", sans-serif; }
 .summary-card span { color: var(--muted); font-size: 12px; }
+.customer-dashboard { width: min(1200px, 100%); }
+.dashboard-section-heading, .admin-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.dashboard-section-heading h2, .admin-section-heading h2 { margin: 0; font: 700 32px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.dashboard-section-heading .eyebrow, .admin-section-heading .eyebrow { margin-bottom: 5px; }
+.dashboard-section-heading > p, .admin-section-heading > p { max-width: 440px; margin: 0; color: var(--muted); font-size: 14px; }
+.customer-shop { margin-top: 30px; }
+.inline-status { min-height: 24px; margin: 14px 0; color: var(--muted); font-size: 14px; }
+.customer-model-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.customer-model-card { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 8px 24px rgba(18, 21, 28, 0.05); transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
+.customer-model-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(18, 21, 28, 0.1); }
+.customer-model-card.is-selected { border-color: var(--red); box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.12); }
+.customer-model-card > img { display: block; width: 100%; height: 190px; object-fit: contain; background: var(--page); }
+.customer-model-details { display: grid; gap: 8px; padding: 18px; }
+.customer-model-category { margin: 0; color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.customer-model-details h3 { margin: 0; font: 700 25px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.customer-model-price { min-height: 24px; margin: 0; font-weight: 700; }
+.customer-model-details .primary-button { width: 100%; margin-top: 4px; }
+.customer-model-details .primary-button:disabled { background: #e4e6ea; color: #697180; cursor: not-allowed; box-shadow: none; transform: none; }
 .profile-settings { margin-top: 20px; }
 .optional { color: var(--muted); font-weight: 400; }
 .order-history { margin-top: 28px; }
@@ -53,12 +71,21 @@ h1 span { color: var(--red); }
 .order-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
 .order-row small { color: var(--muted); }
 .order-state { align-self: center; color: var(--red); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.order-meta { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.order-meta .secondary-button { min-height: 36px; padding: 7px 12px; font-size: 12px; }
 .header-actions { display: flex; align-items: center; gap: 18px; }
+.signed-in-label { color: var(--muted); font-size: 13px; font-weight: 600; }
 .admin-main { width: min(1200px, 100%); margin: 0 auto; padding: 52px 5vw 90px; }
 .admin-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.admin-titlebar { display: flex; align-items: end; gap: 20px; }
 .admin-heading .intro { max-width: 430px; margin: 0; }
-.admin-section { margin-top: 34px; }
-.admin-section > h2 { margin-bottom: 16px; font: 700 32px/1.1 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.admin-overview { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+.admin-stat { display: grid; gap: 6px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 8px 24px rgba(18, 21, 28, 0.04); }
+.admin-stat span { color: var(--muted); font-size: 13px; font-weight: 600; }
+.admin-stat strong { color: var(--red); font: 700 36px/1 "Barlow Condensed", sans-serif; }
+.admin-section { margin-top: 26px; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: 0 10px 30px rgba(18, 21, 28, 0.05); }
+.admin-section-heading { margin-bottom: 18px; }
+.admin-section-heading h2 { font-size: 30px; }
 .admin-model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
 .price-card { display: grid; align-content: start; gap: 12px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 8px 24px rgba(18, 21, 28, 0.05); }
 .price-card h3 { font: 700 23px/1.1 "Barlow Condensed", sans-serif; text-transform: uppercase; }
@@ -68,10 +95,12 @@ h1 span { color: var(--red); }
 .price-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--red); }
 .price-card .primary-button { justify-self: start; }
 .admin-orders { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-.admin-orders table { width: 100%; border-collapse: collapse; text-align: left; }
+.admin-orders table { width: 100%; min-width: 650px; border-collapse: collapse; text-align: left; }
 .admin-orders th, .admin-orders td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .admin-orders th { background: var(--page); font-size: 12px; text-transform: uppercase; }
 .admin-orders td { font-size: 13px; }
+.admin-orders td a { color: var(--red); }
+.admin-orders td a:hover { text-decoration: underline; }
 .admin-orders select { padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
 .admin-orders .secondary-button { min-height: 36px; padding: 7px 12px; font-size: 12px; }
 .admin-orders .inquiry-message { max-width: 280px; white-space: normal; overflow-wrap: anywhere; }
@@ -86,7 +115,21 @@ button:disabled { cursor: wait; opacity: 0.65; }
   .dashboard-tabs { overflow-x: auto; }
   .dashboard-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .admin-heading { align-items: flex-start; flex-direction: column; }
+  .admin-titlebar { align-items: flex-start; flex-direction: column; gap: 12px; }
   .admin-main { padding-top: 30px; }
+}
+@media (max-width: 820px) {
+  .customer-model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-section-heading, .admin-section-heading { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 520px) {
+  .customer-model-grid { grid-template-columns: 1fr; }
+  .customer-model-card > img { height: 210px; }
+  .header-actions { gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .header-actions .back-link { font-size: 12px; }
+  .admin-overview { gap: 8px; }
+  .admin-stat { padding: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

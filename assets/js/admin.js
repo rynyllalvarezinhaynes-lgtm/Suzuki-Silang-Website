@@ -4,6 +4,7 @@
   var $ = function (selector) { return document.querySelector(selector); };
   var status = $("#adminStatus");
   var csrfToken = "";
+  var dashboardData = { models: [], orders: [], customers: [], inquiries: [] };
 
   async function request(url, options) {
     var settings = options || {};
@@ -28,8 +29,33 @@
     return cell;
   }
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(Number(price));
+  }
+
+  function formatDate(value) {
+    return new Date(value).toLocaleDateString("en-PH", { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  function renderOverview() {
+    var container = $("#adminOverview");
+    container.replaceChildren();
+    [
+      { label: "Available cars", value: dashboardData.models.filter(function (model) { return model.active; }).length },
+      { label: "Customer accounts", value: dashboardData.customers.length },
+      { label: "Pending requests", value: dashboardData.orders.filter(function (order) { return order.status === "pending"; }).length },
+      { label: "New inquiries", value: dashboardData.inquiries.filter(function (inquiry) { return inquiry.status === "new"; }).length }
+    ].forEach(function (item) {
+      var card = document.createElement("article");
+      card.className = "admin-stat";
+      card.append(makeCell("span", item.label), makeCell("strong", String(item.value)));
+      container.appendChild(card);
+    });
+  }
+
   async function loadModels() {
     var result = await request("/api/admin/models");
+    dashboardData.models = result.models;
     var container = $("#modelPrices");
     container.replaceChildren();
     result.models.forEach(function (model) {
@@ -68,6 +94,9 @@
             method: "PUT",
             body: JSON.stringify({ price: priceInput.value, active: activeInput.checked })
           });
+          model.price = priceInput.value || null;
+          model.active = activeInput.checked;
+          renderOverview();
           status.textContent = model.name + " price saved.";
         } catch (error) {
           status.textContent = error.message;
@@ -77,20 +106,22 @@
       });
       container.appendChild(form);
     });
+    return result.models;
   }
 
   async function loadOrders() {
     var result = await request("/api/admin/orders");
+    dashboardData.orders = result.orders;
     var container = $("#adminOrders");
     container.replaceChildren();
     if (!result.orders.length) {
       container.textContent = "No order requests yet.";
-      return;
+      return result.orders;
     }
     var table = document.createElement("table");
     var head = document.createElement("thead");
     var headerRow = document.createElement("tr");
-    ["Request", "Customer", "Model", "Price", "Status", "Update"].forEach(function (label) {
+    ["Request", "Submitted", "Customer", "Model", "Price", "Status", "Update"].forEach(function (label) {
       headerRow.appendChild(makeCell("th", label));
     });
     head.appendChild(headerRow);
@@ -98,6 +129,7 @@
     result.orders.forEach(function (order) {
       var row = document.createElement("tr");
       row.appendChild(makeCell("td", "#" + order.id));
+      row.appendChild(makeCell("td", formatDate(order.createdAt)));
       var customerCell = document.createElement("td");
       customerCell.appendChild(makeCell("div", order.customerName));
       var emailLink = document.createElement("a");
@@ -131,6 +163,8 @@
             method: "PATCH",
             body: JSON.stringify({ status: select.value })
           });
+          order.status = select.value;
+          renderOverview();
           status.textContent = "Order #" + order.id + " updated.";
         } catch (error) {
           status.textContent = error.message;
@@ -144,15 +178,53 @@
     });
     table.append(head, body);
     container.appendChild(table);
+    return result.orders;
+  }
+
+  async function loadCustomers() {
+    var result = await request("/api/admin/customers");
+    dashboardData.customers = result.customers;
+    var container = $("#adminCustomers");
+    container.replaceChildren();
+    if (!result.customers.length) {
+      container.textContent = "No customer accounts yet.";
+      return result.customers;
+    }
+
+    var table = document.createElement("table");
+    var head = document.createElement("thead");
+    var headerRow = document.createElement("tr");
+    ["Customer", "Email", "Joined", "Purchase requests"].forEach(function (label) {
+      headerRow.appendChild(makeCell("th", label));
+    });
+    head.appendChild(headerRow);
+    var body = document.createElement("tbody");
+    result.customers.forEach(function (customer) {
+      var row = document.createElement("tr");
+      row.appendChild(makeCell("td", customer.name));
+      var emailCell = document.createElement("td");
+      var emailLink = document.createElement("a");
+      emailLink.href = "mailto:" + customer.email.split("@").map(encodeURIComponent).join("@");
+      emailLink.textContent = customer.email;
+      emailCell.appendChild(emailLink);
+      row.appendChild(emailCell);
+      row.appendChild(makeCell("td", formatDate(customer.createdAt)));
+      row.appendChild(makeCell("td", String(customer.orderCount)));
+      body.appendChild(row);
+    });
+    table.append(head, body);
+    container.appendChild(table);
+    return result.customers;
   }
 
   async function loadInquiries() {
     var result = await request("/api/admin/inquiries");
+    dashboardData.inquiries = result.inquiries;
     var container = $("#adminInquiries");
     container.replaceChildren();
     if (!result.inquiries.length) {
       container.textContent = "No test-drive or quote inquiries yet.";
-      return;
+      return result.inquiries;
     }
 
     var table = document.createElement("table");
@@ -216,6 +288,8 @@
             method: "PATCH",
             body: JSON.stringify({ status: select.value })
           });
+          inquiry.status = select.value;
+          renderOverview();
           status.textContent = "Inquiry #" + inquiry.id + " updated.";
         } catch (error) {
           status.textContent = error.message;
@@ -229,9 +303,11 @@
     });
     table.append(head, body);
     container.appendChild(table);
+    return result.inquiries;
   }
 
-  async function initialize() {
+  async function initialize(showConfirmation) {
+    status.textContent = "";
     try {
       var csrf = await request("/api/auth/csrf");
       csrfToken = csrf.csrfToken;
@@ -240,11 +316,24 @@
         window.location.href = "account.html";
         return;
       }
-      await Promise.all([loadModels(), loadOrders(), loadInquiries()]);
+      $("#adminIdentity").textContent = "Signed in as " + account.user.name + " · Admin";
+      await Promise.all([loadModels(), loadOrders(), loadCustomers(), loadInquiries()]);
+      renderOverview();
+      if (showConfirmation) status.textContent = "Dashboard data refreshed.";
     } catch (error) {
       status.textContent = error.message;
     }
   }
+
+  $("#refreshDashboard").addEventListener("click", async function (event) {
+    var button = event.currentTarget;
+    button.disabled = true;
+    try {
+      await initialize(true);
+    } finally {
+      button.disabled = false;
+    }
+  });
 
   $("#logoutButton").addEventListener("click", async function () {
     try {
@@ -255,5 +344,5 @@
     }
   });
 
-  initialize();
+  initialize(false);
 })();

@@ -28,6 +28,9 @@
     if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
   onScroll();
+  new IntersectionObserver(function (entries) {
+    floatBar.classList.toggle("contact-visible", entries[0].isIntersecting);
+  }, { threshold: 0.1 }).observe($("#contact"));
 
   /* ---------- Hero background video ---------- */
   var hero = $("#hero");

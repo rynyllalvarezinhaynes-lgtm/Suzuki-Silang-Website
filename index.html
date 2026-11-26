@@ -24,7 +24,9 @@
       <a href="#s-presso">Featured Models</a>
       <a href="#specs">Specifications</a>
       <a href="#faq">FAQ</a>
-      <a href="account.html">Sign in</a>
+      <a href="account.html" id="accountLink">Sign in</a>
+      <span class="account-identity" id="accountIdentity" hidden></span>
+      <a href="account.html" class="nav-cta nav-dashboard" id="dashboardLink" hidden>Dashboard</a>
       <a href="#contact" class="nav-cta">Get a Quote</a>
     </nav>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -76,7 +78,7 @@
 
     <section class="models" id="models">
       <h2 class="section-title reveal">Explore the <span class="accent">Suzuki range</span></h2>
-      <p class="models-intro reveal">From compact city cars to SUVs, family MPVs and work vehicles, explore the Suzuki range. Starting Philippine MSRPs checked November 26, 2026; confirm current trim, price and availability with Suzuki Auto Silang.</p>
+      <p class="models-intro reveal">From compact city cars to SUVs, family MPVs and work vehicles, explore the Suzuki range. Starting prices and availability are managed by Suzuki Auto Silang; confirm the current trim and final price with the team.</p>
       <div class="filters reveal" id="filters">
         <button class="chip active" data-filter="all">All</button>
         <button class="chip" data-filter="hatchback">Hatchback</button>
@@ -85,16 +87,17 @@
         <button class="chip" data-filter="mpv">MPV</button>
         <button class="chip" data-filter="commercial">Commercial</button>
       </div>
+      <p class="shop-status" id="shopStatus" role="status" aria-live="polite"></p>
       <div class="model-grid" id="modelGrid">
-        <article class="model reveal" data-type="hatchback"><img class="model-art" src="assets/images/hero/s-presso-photo.png" alt="Suzuki S-Presso AGS" width="1009" height="622" loading="lazy" /><h4>S-Presso AGS</h4><span>Compact hatchback</span><p>998 cc K10C engine; GL AGS (5AGS) and GL MT (5MT) grades.</p><div class="model-shop"><p class="model-price">From ₱674,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="suv"><img class="model-art" src="assets/images/models/jimny-owner.png" alt="Suzuki Jimny AllGrip Pro" width="771" height="537" loading="lazy" /><h4>Jimny AllGrip Pro</h4><span>SUV &middot; 3-door</span><p>Compact off-roader with Suzuki AllGrip Pro four-wheel drive.</p><div class="model-shop"><p class="model-price">From ₱1,293,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="suv"><img class="model-art" src="assets/images/models/jimny-5-door-owner.png" alt="Suzuki Jimny 5-Door AllGrip Pro" width="770" height="537" loading="lazy" /><h4>Jimny 5-Door AllGrip Pro</h4><span>SUV &middot; 5-door</span><p>Jimny capability with a longer body and added rear-seat access.</p><div class="model-shop"><p class="model-price">From ₱1,698,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="suv"><img class="model-art" src="assets/images/models/fronx-owner.png" alt="Suzuki Fronx Hybrid" width="770" height="537" loading="lazy" /><h4>Fronx Hybrid</h4><span>SUV &middot; Hybrid</span><p>Distinctive crossover styling, with hybrid power available in selected grades.</p><div class="model-shop"><p class="model-price">From ₱1,219,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="suv"><img class="model-art" src="assets/images/models/xl7-owner.png" alt="Suzuki XL7 Hybrid Black Edition" width="770" height="537" loading="lazy" /><h4>XL7 Hybrid Black Edition</h4><span>SUV &middot; 7 seats</span><p>Seven-seat hybrid SUV with black exterior accents and a spacious cabin.</p><div class="model-shop"><p class="model-price">From ₱1,259,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="sedan"><img class="model-art" src="assets/images/models/dzire-owner.png" alt="Suzuki Dzire Hybrid" width="770" height="537" loading="lazy" /><h4>Dzire Hybrid</h4><span>Sedan &middot; 12V Hybrid</span><p>Hybrid sedan with a 378-litre luggage compartment and modern cabin features.</p><div class="model-shop"><p class="model-price">From ₱920,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="mpv"><img class="model-art" src="assets/images/models/ertiga-owner.png" alt="Suzuki Ertiga Hybrid" width="770" height="537" loading="lazy" /><h4>Ertiga Hybrid</h4><span>MPV &middot; 7 seats</span><p>Three rows of seating, with flexible space for passengers and luggage.</p><div class="model-shop"><p class="model-price">From ₱1,178,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="mpv"><img class="model-art" src="assets/images/models/apv-owner.png" alt="Suzuki APV" width="770" height="537" loading="lazy" /><h4>APV</h4><span>MPV</span><p>Roomy cabin and flexible seating for passenger trips or business use.</p><div class="model-shop"><p class="model-price">From ₱763,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
-        <article class="model reveal" data-type="commercial"><img class="model-art" src="assets/images/models/carry-owner.png" alt="Suzuki Carry" width="770" height="537" loading="lazy" /><h4>Carry</h4><span>Commercial</span><p>Commercial vehicle with multiple body configurations for different work needs.</p><div class="model-shop"><p class="model-price">From ₱614,000</p><a class="btn btn-primary order-button" href="#contact">Ask about this model</a></div></article>
+        <article class="model reveal" data-type="hatchback" data-model-slug="s-presso-ags"><img class="model-art" src="assets/images/hero/s-presso-photo.png" alt="Suzuki S-Presso AGS" width="1009" height="622" loading="lazy" /><h4>S-Presso AGS</h4><span>Compact hatchback</span><p>998 cc K10C engine; GL AGS (5AGS) and GL MT (5MT) grades.</p><div class="model-shop"><p class="model-price">From ₱674,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="jimny-allgrip-pro"><img class="model-art" src="assets/images/models/jimny-owner.png" alt="Suzuki Jimny AllGrip Pro" width="771" height="537" loading="lazy" /><h4>Jimny AllGrip Pro</h4><span>SUV &middot; 3-door</span><p>Compact off-roader with Suzuki AllGrip Pro four-wheel drive.</p><div class="model-shop"><p class="model-price">From ₱1,293,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="jimny-5-door-allgrip-pro"><img class="model-art" src="assets/images/models/jimny-5-door-owner.png" alt="Suzuki Jimny 5-Door AllGrip Pro" width="770" height="537" loading="lazy" /><h4>Jimny 5-Door AllGrip Pro</h4><span>SUV &middot; 5-door</span><p>Jimny capability with a longer body and added rear-seat access.</p><div class="model-shop"><p class="model-price">From ₱1,698,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="fronx-hybrid"><img class="model-art" src="assets/images/models/fronx-owner.png" alt="Suzuki Fronx Hybrid" width="770" height="537" loading="lazy" /><h4>Fronx Hybrid</h4><span>SUV &middot; Hybrid</span><p>Distinctive crossover styling, with hybrid power available in selected grades.</p><div class="model-shop"><p class="model-price">From ₱1,219,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="xl7-hybrid-black-edition"><img class="model-art" src="assets/images/models/xl7-owner.png" alt="Suzuki XL7 Hybrid Black Edition" width="770" height="537" loading="lazy" /><h4>XL7 Hybrid Black Edition</h4><span>SUV &middot; 7 seats</span><p>Seven-seat hybrid SUV with black exterior accents and a spacious cabin.</p><div class="model-shop"><p class="model-price">From ₱1,259,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="sedan" data-model-slug="dzire-hybrid"><img class="model-art" src="assets/images/models/dzire-owner.png" alt="Suzuki Dzire Hybrid" width="770" height="537" loading="lazy" /><h4>Dzire Hybrid</h4><span>Sedan &middot; 12V Hybrid</span><p>Hybrid sedan with a 378-litre luggage compartment and modern cabin features.</p><div class="model-shop"><p class="model-price">From ₱920,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="mpv" data-model-slug="ertiga-hybrid"><img class="model-art" src="assets/images/models/ertiga-owner.png" alt="Suzuki Ertiga Hybrid" width="770" height="537" loading="lazy" /><h4>Ertiga Hybrid</h4><span>MPV &middot; 7 seats</span><p>Three rows of seating, with flexible space for passengers and luggage.</p><div class="model-shop"><p class="model-price">From ₱1,178,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="mpv" data-model-slug="apv"><img class="model-art" src="assets/images/models/apv-owner.png" alt="Suzuki APV" width="770" height="537" loading="lazy" /><h4>APV</h4><span>MPV</span><p>Roomy cabin and flexible seating for passenger trips or business use.</p><div class="model-shop"><p class="model-price">From ₱763,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
+        <article class="model reveal" data-type="commercial" data-model-slug="carry"><img class="model-art" src="assets/images/models/carry-owner.png" alt="Suzuki Carry" width="770" height="537" loading="lazy" /><h4>Carry</h4><span>Commercial</span><p>Commercial vehicle with multiple body configurations for different work needs.</p><div class="model-shop"><p class="model-price">From ₱614,000</p><button class="btn btn-primary order-button" type="button" disabled>Loading price...</button></div></article>
       </div>
     </section>
 
@@ -215,9 +218,33 @@
     <section class="contact" id="contact">
       <div class="contact-inner">
         <div class="reveal from-left">
-          <h2>Book a test drive or <span class="accent">get a quote</span></h2>
-          <p class="muted">Call, message or email Suzuki Auto Silang about a model, test drive or quote.</p>
-          <ul class="contact-list">
+          <h2>Get a quote from <span class="accent">Suzuki Auto Silang</span></h2>
+          <p class="muted">Choose a model and our team will contact you about current pricing.</p>
+          <form class="quote-form" id="inquiryForm">
+            <label for="inquiryModel">Preferred model
+              <select id="inquiryModel" name="modelSlug" required disabled>
+                <option value="">Loading Suzuki models...</option>
+              </select>
+            </label>
+            <label for="inquiryName">Full name
+              <input id="inquiryName" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Enter your full name" required />
+            </label>
+            <div class="quote-form-row">
+              <label for="inquiryPhone">Mobile number
+                <input id="inquiryPhone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="09XX XXX XXXX" required />
+              </label>
+              <label for="inquiryEmail">Email address
+                <input id="inquiryEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required />
+              </label>
+            </div>
+            <button class="quote-submit" type="submit" disabled>Request a quote <span aria-hidden="true">→</span></button>
+            <p class="quote-status" id="inquiryStatus" role="status" aria-live="polite">Loading the quote request form...</p>
+            <p class="quote-note">Your details will be used to respond to your quote request.</p>
+            <p class="quote-note">Quotation requests do not reserve a vehicle or guarantee financing approval.</p>
+          </form>
+          <details class="contact-details">
+            <summary>More contact details</summary>
+            <ul class="contact-list">
             <li>
               <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3l1.6 4.1-2 1.7a15.2 15.2 0 0 0 7.1 7.1l1.7-2 4.1 1.6v3a1.5 1.5 0 0 1-1.6 1.5A16.9 16.9 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5Z"/></svg></span>
               <span><b>Telephone:</b> <a href="tel:+639279073924">0927 907 3924</a></span>
@@ -238,11 +265,11 @@
               <span class="contact-icon contact-icon-facebook" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.4 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3H10v8z"/></svg></span>
               <span><b>Facebook:</b> <a href="https://www.facebook.com/p/Suzuki-Auto-Silang-61577514884068/" target="_blank" rel="noopener noreferrer">Suzuki Auto Silang</a></span>
             </li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div class="form static-contact reveal from-right">
           <h3>Talk with our team</h3>
-          <p class="muted">This static site does not send online inquiries. Call, message or email Suzuki Auto Silang for a quote or test-drive appointment.</p>
           <a class="btn btn-primary" href="tel:+639279073924">Call Suzuki Auto Silang</a>
           <a class="text-link" href="mailto:info.suzukiautosilang@gmail.com">Email Suzuki Auto Silang <span>&#8594;</span></a>
         </div>
@@ -274,5 +301,7 @@
   </nav>
 
   <script src="assets/js/script.js"></script>
+  <script src="assets/js/shop.js"></script>
+  <script src="assets/js/inquiry.js"></script>
 </body>
 </html>

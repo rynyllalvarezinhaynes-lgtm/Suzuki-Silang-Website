@@ -19,7 +19,7 @@
     <section class="account-card" id="authPanel">
       <p class="eyebrow">Customer account</p>
       <h1>Welcome to <span>Suzuki Auto Silang</span></h1>
-      <p class="intro">Browse models without an account. Sign in or create one when you’re ready to submit an order request.</p>
+      <p class="intro">Browse the showroom as a guest. Sign in or create a customer account to request a car and track the dealer’s response.</p>
       <div class="auth-tabs" role="tablist" aria-label="Account options">
         <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Sign in</button>
         <button type="button" id="registerTab" role="tab" aria-selected="false">Create account</button>
@@ -38,7 +38,7 @@
       </form>
       <p class="account-status" id="accountStatus" role="status" aria-live="polite"></p>
     </section>
-    <section class="account-card profile-card" id="profilePanel" hidden>
+    <section class="account-card profile-card customer-dashboard" id="profilePanel" hidden>
       <p class="eyebrow">Signed in</p>
       <h1>Hello, <span id="profileName"></span></h1>
       <p id="profileEmail" class="intro"></p>
@@ -48,11 +48,22 @@
       </div>
       <div id="dashboardView">
         <div class="profile-actions">
-          <a class="primary-button" href="index.html#models">Browse models and request an order</a>
+          <a class="primary-button" href="index.html#models">View showroom</a>
           <a class="secondary-button" id="adminLink" href="admin.html" hidden>Open admin dashboard</a>
           <button type="button" id="logoutButton" class="secondary-button">Sign out</button>
         </div>
         <div id="dashboardSummary" class="dashboard-summary"></div>
+        <section class="customer-shop" id="customerShop" aria-labelledby="customerShopTitle">
+          <div class="dashboard-section-heading">
+            <div>
+              <p class="eyebrow">Find your next Suzuki</p>
+              <h2 id="customerShopTitle">Choose a car</h2>
+            </div>
+            <p class="muted">Send an order request to Suzuki Auto Silang. The dealer will confirm availability and final pricing; no payment is taken online.</p>
+          </div>
+          <p class="inline-status" id="customerShopStatus" role="status" aria-live="polite"></p>
+          <div class="customer-model-grid" id="customerModels"></div>
+        </section>
         <div id="orderHistory" class="order-history"></div>
       </div>
       <form id="profileSettings" class="account-form profile-settings" hidden>

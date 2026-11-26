@@ -13,24 +13,44 @@
 <body>
   <header class="account-header">
     <a href="index.html" aria-label="Suzuki Auto Silang home"><img src="assets/images/icons/suzuki-auto-silang.png" alt="Suzuki Auto Silang" /></a>
-    <div class="header-actions"><a class="back-link" href="index.html">View website</a><a class="back-link" href="account.html">Profile settings</a><button type="button" id="logoutButton" class="secondary-button">Sign out</button></div>
+    <div class="header-actions"><span class="signed-in-label" id="adminIdentity"></span><a class="back-link" href="index.html">View website</a><a class="back-link" href="account.html">Profile settings</a><button type="button" id="logoutButton" class="secondary-button">Sign out</button></div>
   </header>
   <main class="admin-main">
     <div class="admin-heading">
-      <div><p class="eyebrow">Administrator</p><h1>Prices & <span>orders</span></h1></div>
-      <p class="intro">Adjust the starting prices shown to customers. Confirm current trims and availability with Suzuki Auto Silang.</p>
+      <div class="admin-titlebar">
+        <div><p class="eyebrow">Suzuki Auto Silang</p><h1>Admin <span>dashboard</span></h1></div>
+        <button type="button" class="secondary-button" id="refreshDashboard">Refresh data</button>
+      </div>
+      <p class="intro">Manage showroom prices, review customer accounts and handle purchase requests.</p>
     </div>
     <p class="account-status" id="adminStatus" role="status" aria-live="polite"></p>
+    <section class="admin-overview" id="adminOverview" aria-label="Dashboard overview"></section>
     <section class="admin-section">
-      <h2>Model prices</h2>
+      <div class="admin-section-heading">
+        <div><p class="eyebrow">Showroom</p><h2>Model prices &amp; availability</h2></div>
+        <p>Set a starting price and choose which cars customers can request.</p>
+      </div>
       <div id="modelPrices" class="admin-model-grid"></div>
     </section>
     <section class="admin-section">
-      <h2>Order requests</h2>
+      <div class="admin-section-heading">
+        <div><p class="eyebrow">Customer activity</p><h2>Purchase requests</h2></div>
+        <p>Review customer details and update each request as you follow up.</p>
+      </div>
       <div id="adminOrders" class="admin-orders"></div>
     </section>
     <section class="admin-section">
-      <h2>Test-drive &amp; quote inquiries</h2>
+      <div class="admin-section-heading">
+        <div><p class="eyebrow">Accounts</p><h2>Customer accounts</h2></div>
+        <p>Public registrations are customer accounts only. Contact details and request counts are shown here.</p>
+      </div>
+      <div id="adminCustomers" class="admin-orders"></div>
+    </section>
+    <section class="admin-section">
+      <div class="admin-section-heading">
+        <div><p class="eyebrow">Follow up</p><h2>Test-drive &amp; quote inquiries</h2></div>
+        <p>Track showroom inquiries and mark when your team has followed up.</p>
+      </div>
       <div id="adminInquiries" class="admin-orders"></div>
     </section>
   </main>

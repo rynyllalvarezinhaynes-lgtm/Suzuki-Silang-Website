@@ -442,6 +442,28 @@ app.post("/api/orders", requireAuth, requireCsrf, asyncRoute(async (req, res) =>
   }
 }));
 
+app.delete("/api/orders/:id", requireAuth, requireCsrf, asyncRoute(async (req, res) => {
+  if (req.session.user.role !== "customer") return res.status(403).json({ error: "Customer accounts are required to remove a purchase request." });
+  const orderId = Number(req.params.id);
+  if (!Number.isSafeInteger(orderId) || orderId < 1) {
+    return res.status(400).json({ error: "Choose a valid purchase request." });
+  }
+
+  const [result] = await pool.execute(
+    "DELETE FROM orders WHERE id = ? AND customer_id = ? AND status = 'pending'",
+    [orderId, req.session.user.id]
+  );
+  if (!result.affectedRows) {
+    const [orders] = await pool.execute(
+      "SELECT status FROM orders WHERE id = ? AND customer_id = ?",
+      [orderId, req.session.user.id]
+    );
+    if (!orders.length) return res.status(404).json({ error: "Purchase request not found." });
+    return res.status(409).json({ error: "Only pending purchase requests can be removed." });
+  }
+  res.json({ order: { id: orderId, removed: true } });
+}));
+
 app.get("/api/admin/models", requireAuth, requireAdmin, asyncRoute(async (req, res) => {
   const [models] = await pool.execute(
     "SELECT id, slug, name, category, price, active FROM models ORDER BY name"
@@ -485,6 +507,19 @@ app.get("/api/admin/orders", requireAuth, requireAdmin, asyncRoute(async (req, r
      ORDER BY o.created_at DESC LIMIT 200`
   );
   res.json({ orders });
+}));
+
+app.get("/api/admin/customers", requireAuth, requireAdmin, asyncRoute(async (req, res) => {
+  const [customers] = await pool.execute(
+    `SELECT u.id, u.name, u.email, u.created_at AS createdAt, COUNT(o.id) AS orderCount
+     FROM users u
+     LEFT JOIN orders o ON o.customer_id = u.id
+     WHERE u.role = 'customer'
+     GROUP BY u.id, u.name, u.email, u.created_at
+     ORDER BY u.created_at DESC
+     LIMIT 200`
+  );
+  res.json({ customers });
 }));
 
 app.get("/api/admin/inquiries", requireAuth, requireAdmin, asyncRoute(async (req, res) => {

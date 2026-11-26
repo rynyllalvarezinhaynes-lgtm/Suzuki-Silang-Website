@@ -3,31 +3,45 @@
 
   var status = document.getElementById("shopStatus");
   var cards = Array.prototype.slice.call(document.querySelectorAll("[data-model-slug]"));
-  var csrfToken = "";
-  var currentUser = null;
 
-  function setStatus(message) {
-    status.textContent = message;
-  }
-
-  async function readResponse(response) {
-    var payload = {};
-    try {
-      payload = await response.json();
-    } catch (error) {
-      throw new Error("The server returned an unreadable response.");
-    }
-    if (!response.ok) throw new Error(payload.error || "The request could not be completed.");
-    return payload;
+  function readResponse(response) {
+    return response.json().then(function (payload) {
+      if (!response.ok) throw new Error(payload.error || "The request could not be completed.");
+      return payload;
+    }).catch(function (error) {
+      if (error instanceof SyntaxError) throw new Error("The server returned an unreadable response.");
+      throw error;
+    });
   }
 
   function formatPrice(price) {
     return new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(Number(price));
   }
 
-  function showModel(model) {
-    var card = cards.find(function (item) { return item.dataset.modelSlug === model.slug; });
-    if (!card) return;
+  function showSignedInAccount(user) {
+    var accountLink = document.getElementById("accountLink");
+    var accountIdentity = document.getElementById("accountIdentity");
+    var dashboardLink = document.getElementById("dashboardLink");
+    if (!accountLink || !user) return;
+    var role = user.role === "admin" ? "Admin" : "Customer";
+    var dashboardUrl = user.role === "admin" ? "admin.html" : "account.html";
+    accountLink.hidden = true;
+    accountIdentity.hidden = false;
+    accountIdentity.textContent = user.name + " · " + role;
+    accountIdentity.setAttribute("aria-label", "Signed in as " + user.name + " (" + user.email + ", " + role + ").");
+    accountIdentity.title = "Signed in as " + user.name + " (" + user.email + ", " + role + ")";
+    dashboardLink.href = dashboardUrl;
+    dashboardLink.hidden = false;
+  }
+
+  function disableCard(card, message) {
+    card.querySelector(".model-price").textContent = message;
+    var button = card.querySelector(".order-button");
+    button.textContent = "Unavailable";
+    button.disabled = true;
+  }
+
+  function showModel(card, model, user) {
     var price = card.querySelector(".model-price");
     var button = card.querySelector(".order-button");
     if (model.price === null || !Number.isFinite(Number(model.price)) || Number(model.price) <= 0) {
@@ -39,51 +53,51 @@
 
     price.textContent = "From " + formatPrice(model.price);
     button.disabled = false;
-    if (!currentUser) {
-      button.textContent = "Sign in to order";
-      button.addEventListener("click", function () {
-        window.location.href = "account.html?model=" + encodeURIComponent(model.slug);
-      }, { once: true });
-    } else if (currentUser.role === "admin") {
-      button.textContent = "Manage prices";
-      button.addEventListener("click", function () {
-        window.location.href = "admin.html";
-      }, { once: true });
+    if (user && user.role === "admin") {
+      button.textContent = "Manage price";
+    } else if (user) {
+      button.textContent = "Request from dashboard";
     } else {
-      button.textContent = "Place order";
-      button.addEventListener("click", async function () {
-        if (!window.confirm("Submit an order request for " + model.name + "? The dealer will confirm availability.")) return;
-        button.disabled = true;
-        button.textContent = "Submitting…";
-        try {
-          var response = await fetch("/api/orders", {
-            method: "POST",
-            credentials: "same-origin",
-            headers: { "Content-Type": "application/json", "X-CSRF-Token": csrfToken },
-            body: JSON.stringify({ modelId: model.id })
-          });
-          var result = await readResponse(response);
-          setStatus("Order request #" + result.order.id + " was submitted. Suzuki Auto Silang will confirm availability.");
-          button.textContent = "Request sent";
-        } catch (error) {
-          setStatus(error.message);
-          button.disabled = false;
-          button.textContent = "Place order";
-        }
-      });
+      button.textContent = "Sign in to request";
     }
+
+    button.addEventListener("click", function () {
+      if (user && user.role === "admin") {
+        window.location.href = "admin.html";
+        return;
+      }
+      window.location.href = "account.html?model=" + encodeURIComponent(model.slug);
+    });
   }
 
   async function loadShop() {
+    cards.forEach(function (card) {
+      card.querySelector(".model-price").textContent = "Loading current price...";
+      card.querySelector(".order-button").disabled = true;
+    });
     try {
-      var csrf = await readResponse(await fetch("/api/auth/csrf", { credentials: "same-origin" }));
-      var account = await readResponse(await fetch("/api/auth/me", { credentials: "same-origin" }));
-      var catalog = await readResponse(await fetch("/api/models", { credentials: "same-origin" }));
-      csrfToken = csrf.csrfToken;
-      currentUser = account.user;
-      catalog.models.forEach(showModel);
+      var responses = await Promise.all([
+        fetch("/api/auth/me", { credentials: "same-origin" }),
+        fetch("/api/models", { credentials: "same-origin" })
+      ]);
+      var account = await readResponse(responses[0]);
+      var catalog = await readResponse(responses[1]);
+      showSignedInAccount(account.user);
+      var modelBySlug = new Map(catalog.models.map(function (model) { return [model.slug, model]; }));
+      cards.forEach(function (card) {
+        var model = modelBySlug.get(card.dataset.modelSlug);
+        if (!model) {
+          disableCard(card, "Not currently available");
+          return;
+        }
+        showModel(card, model, account.user);
+      });
+      status.textContent = account.user && account.user.role === "customer"
+        ? "Prices are set by Suzuki Auto Silang. Submit purchase requests from your customer dashboard."
+        : "Prices and availability come from Suzuki Auto Silang. Sign in to send a purchase request.";
     } catch (error) {
-      setStatus("Online prices and ordering are unavailable right now. Please contact Suzuki Auto Silang for current prices.");
+      cards.forEach(function (card) { disableCard(card, "Price unavailable"); });
+      status.textContent = "The showroom service is unavailable. Please try again later or contact Suzuki Auto Silang.";
     }
   }
 
