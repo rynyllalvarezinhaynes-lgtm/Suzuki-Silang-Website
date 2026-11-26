@@ -8,7 +8,7 @@ A static, local-only showroom site for Suzuki Auto Silang. The displayed models,
 2. Double-click `Start Suzuki Website.bat`. It opens `index.html` in the default browser.
 3. The static site works without installing Node.js or MySQL.
 
-The static version is a brochure-style display. It does not provide sign-in, administrator tools, online orders or inquiry submission. Use the phone, Viber or email links on the page to contact Suzuki Auto Silang.
+The home page includes a **Sign in** link to the existing account page. Signing in and creating accounts require the Express/MySQL backend; they will not work when the static page is opened directly with the Windows launcher. Administrator tools, online orders and inquiry submission are also unavailable in static mode. Use the phone, Viber or email links on the page to contact Suzuki Auto Silang.
 
 Displayed starting Philippine MSRPs were checked November 26, 2026. Prices and availability can change; confirm them with the dealer.
 
