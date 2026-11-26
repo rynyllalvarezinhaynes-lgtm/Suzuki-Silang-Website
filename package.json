@@ -1,0 +1,24 @@
+{
+  "name": "suzuki-auto-silang",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "start:local": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-local.ps1",
+    "dev": "node --watch server.js",
+    "db:local:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-local-mysql.ps1",
+    "db:local:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-local-mysql.ps1",
+    "db:init": "node scripts/init-db.js",
+    "admin:create": "node scripts/create-admin.js",
+    "admin:create-test": "node scripts/create-test-admins.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.14.1"
+  }
+}

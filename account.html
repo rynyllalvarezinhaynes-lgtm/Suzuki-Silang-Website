@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sign in or create a customer account for Suzuki Auto Silang orders." />
+  <title>Account | Suzuki Auto Silang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/account.css" />
+</head>
+<body>
+  <header class="account-header">
+    <a href="index.html" aria-label="Suzuki Auto Silang home"><img src="assets/images/icons/suzuki-auto-silang.png" alt="Suzuki Auto Silang" /></a>
+    <a class="back-link" href="index.html#models">Back to models</a>
+  </header>
+  <main class="account-main">
+    <section class="account-card" id="authPanel">
+      <p class="eyebrow">Customer account</p>
+      <h1>Welcome to <span>Suzuki Auto Silang</span></h1>
+      <p class="intro">Browse models without an account. Sign in or create one when you’re ready to submit an order request.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Account options">
+        <button type="button" class="active" id="loginTab" role="tab" aria-selected="true">Sign in</button>
+        <button type="button" id="registerTab" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <form id="loginForm" class="account-form">
+        <label>Email address<input name="email" type="email" autocomplete="username" maxlength="254" required /></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+        <button class="primary-button" type="submit">Sign in</button>
+      </form>
+      <form id="registerForm" class="account-form" hidden>
+        <label>Full name<input name="name" type="text" autocomplete="name" maxlength="120" required /></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" minlength="12" maxlength="72" required /></label>
+        <p class="field-note">Use at least 12 characters. Passwords are stored as salted hashes.</p>
+        <button class="primary-button" type="submit">Create account</button>
+      </form>
+      <p class="account-status" id="accountStatus" role="status" aria-live="polite"></p>
+    </section>
+    <section class="account-card profile-card" id="profilePanel" hidden>
+      <p class="eyebrow">Signed in</p>
+      <h1>Hello, <span id="profileName"></span></h1>
+      <p id="profileEmail" class="intro"></p>
+      <div class="dashboard-tabs" role="tablist" aria-label="Account dashboard">
+        <button type="button" class="active" data-profile-view="dashboard" role="tab" aria-selected="true">Dashboard</button>
+        <button type="button" data-profile-view="settings" role="tab" aria-selected="false">Profile settings</button>
+      </div>
+      <div id="dashboardView">
+        <div class="profile-actions">
+          <a class="primary-button" href="index.html#models">Browse models and request an order</a>
+          <a class="secondary-button" id="adminLink" href="admin.html" hidden>Open admin dashboard</a>
+          <button type="button" id="logoutButton" class="secondary-button">Sign out</button>
+        </div>
+        <div id="dashboardSummary" class="dashboard-summary"></div>
+        <div id="orderHistory" class="order-history"></div>
+      </div>
+      <form id="profileSettings" class="account-form profile-settings" hidden>
+        <label>Full name<input name="name" type="text" autocomplete="name" maxlength="120" required /></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+        <label>Current password<input name="currentPassword" type="password" autocomplete="current-password" required /></label>
+        <label>New password <span class="optional">(optional)</span><input name="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="72" /></label>
+        <label>Confirm new password<input name="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="72" /></label>
+        <p class="field-note">Enter your current password to save changes. Use at least 12 characters for a new password.</p>
+        <button type="submit" class="primary-button">Save profile</button>
+      </form>
+      <p class="account-status" id="profileStatus" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="assets/js/account.js"></script>
+</body>
+</html>

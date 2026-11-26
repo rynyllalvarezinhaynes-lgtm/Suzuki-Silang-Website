@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Suzuki Auto Silang administrator dashboard." />
+  <title>Admin | Suzuki Auto Silang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/account.css" />
+</head>
+<body>
+  <header class="account-header">
+    <a href="index.html" aria-label="Suzuki Auto Silang home"><img src="assets/images/icons/suzuki-auto-silang.png" alt="Suzuki Auto Silang" /></a>
+    <div class="header-actions"><a class="back-link" href="index.html">View website</a><a class="back-link" href="account.html">Profile settings</a><button type="button" id="logoutButton" class="secondary-button">Sign out</button></div>
+  </header>
+  <main class="admin-main">
+    <div class="admin-heading">
+      <div><p class="eyebrow">Administrator</p><h1>Prices & <span>orders</span></h1></div>
+      <p class="intro">Adjust the starting prices shown to customers. Confirm current trims and availability with Suzuki Auto Silang.</p>
+    </div>
+    <p class="account-status" id="adminStatus" role="status" aria-live="polite"></p>
+    <section class="admin-section">
+      <h2>Model prices</h2>
+      <div id="modelPrices" class="admin-model-grid"></div>
+    </section>
+    <section class="admin-section">
+      <h2>Order requests</h2>
+      <div id="adminOrders" class="admin-orders"></div>
+    </section>
+    <section class="admin-section">
+      <h2>Test-drive &amp; quote inquiries</h2>
+      <div id="adminInquiries" class="admin-orders"></div>
+    </section>
+  </main>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

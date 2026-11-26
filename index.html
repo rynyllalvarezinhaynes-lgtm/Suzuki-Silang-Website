@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suzuki Auto Silang | Suzuki Cars, SUVs and Commercial Vehicles</title>
+  <meta name="description" content="Explore Suzuki models, S-Presso AGS specifications and owner-brochure highlights at Suzuki Auto Silang." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/icons/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="header">
+    <a href="#top" class="brand" aria-label="Suzuki Auto Silang home">
+      <img class="brand-logo" src="assets/images/icons/suzuki-auto-silang.png" alt="Suzuki Auto Silang" width="390" height="125" />
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#models">Models</a>
+      <a href="#s-presso">Featured Models</a>
+      <a href="#specs">Specifications</a>
+      <a href="#faq">FAQ</a>
+      <a href="account.html" class="nav-account">Sign in</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="assets/videos/New%20Suzuki%20S-Presso%20AGS.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow line-in"><span>Your Suzuki journey starts in Cavite</span></p>
+        <h1 class="hero-title hero-title-brand"><span class="mask"><span class="mask-inner">SUZUKI AUTO<br />SILANG</span></span></h1>
+        <p class="hero-sub line-in delay-2"><span>Explore Suzuki models for city life, family trips and work at Suzuki Auto Silang.</span></p>
+        <div class="hero-actions line-in delay-3">
+          <a href="#contact" class="btn btn-primary">Get a Quote</a>
+          <a href="#s-presso" class="btn btn-ghost">Explore Featured Models</a>
+        </div>
+      </div>
+
+      <button class="video-toggle" id="videoToggle" type="button" aria-label="Pause background video" hidden>&#10074;&#10074;</button>
+      <a href="#s-presso" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <section class="s-presso" id="s-presso">
+      <div class="s-presso-inner">
+        <div class="s-presso-copy reveal from-left">
+          <div id="showcaseCopy" aria-live="polite">
+            <p class="eyebrow" id="showcaseEyebrow">Featured Suzuki &middot; 01 / 09</p>
+            <h2 id="showcaseTitle">S-Presso AGS</h2>
+            <p id="showcaseDescription">Kick-start your life with the compact S-Presso. Choose GL AGS with Suzuki Auto Gear Shift or the 5-speed manual GL MT.</p>
+          </div>
+          <div class="showcase-controls" aria-label="Featured Suzuki model controls">
+            <button type="button" id="showcasePrev" aria-label="Previous Suzuki model">&#8592;</button>
+            <span id="showcaseCount" aria-live="off">01 / 09</span>
+            <button type="button" id="showcaseNext" aria-label="Next Suzuki model">&#8594;</button>
+          </div>
+          <a href="#models" class="text-link">Explore the full Suzuki range <span>&#8594;</span></a>
+        </div>
+        <figure class="s-presso-visual reveal from-right">
+          <img id="showcaseImage" src="assets/images/hero/s-presso-photo.png" alt="Red Suzuki S-Presso AGS" width="1009" height="622" />
+          <figcaption id="showcaseCaption">Suzuki S-Presso AGS &middot; “Kick Start Your Life”</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="models" id="models">
+      <h2 class="section-title reveal">Explore the <span class="accent">Suzuki range</span></h2>
+      <p class="models-intro reveal">From compact city cars to SUVs, family MPVs and work vehicles, explore the Suzuki range. Prices shown are starting MSRPs; confirm trim and availability with our team.</p>
+      <div class="filters reveal" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="hatchback">Hatchback</button>
+        <button class="chip" data-filter="suv">SUV</button>
+        <button class="chip" data-filter="sedan">Sedan</button>
+        <button class="chip" data-filter="mpv">MPV</button>
+        <button class="chip" data-filter="commercial">Commercial</button>
+      </div>
+      <div class="model-grid" id="modelGrid">
+        <article class="model reveal" data-type="hatchback" data-model-slug="s-presso-ags"><img class="model-art" src="assets/images/hero/s-presso-photo.png" alt="Suzuki S-Presso AGS" width="1009" height="622" loading="lazy" /><h4>S-Presso AGS</h4><span>Compact hatchback</span><p>998 cc K10C engine; GL AGS (5AGS) and GL MT (5MT) grades.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="jimny-allgrip-pro"><img class="model-art" src="assets/images/models/jimny-owner.png" alt="Suzuki Jimny AllGrip Pro" width="771" height="537" loading="lazy" /><h4>Jimny AllGrip Pro</h4><span>SUV &middot; 3-door</span><p>Compact off-roader with Suzuki AllGrip Pro four-wheel drive.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="jimny-5-door-allgrip-pro"><img class="model-art" src="assets/images/models/jimny-5-door-owner.png" alt="Suzuki Jimny 5-Door AllGrip Pro" width="770" height="537" loading="lazy" /><h4>Jimny 5-Door AllGrip Pro</h4><span>SUV &middot; 5-door</span><p>Jimny capability with a longer body and added rear-seat access.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="fronx-hybrid"><img class="model-art" src="assets/images/models/fronx-owner.png" alt="Suzuki Fronx Hybrid" width="770" height="537" loading="lazy" /><h4>Fronx Hybrid</h4><span>SUV &middot; Hybrid</span><p>Distinctive crossover styling, with hybrid power available in selected grades.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="suv" data-model-slug="xl7-hybrid-black-edition"><img class="model-art" src="assets/images/models/xl7-owner.png" alt="Suzuki XL7 Hybrid Black Edition" width="770" height="537" loading="lazy" /><h4>XL7 Hybrid Black Edition</h4><span>SUV &middot; 7 seats</span><p>Seven-seat hybrid SUV with black exterior accents and a spacious cabin.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="sedan" data-model-slug="dzire-hybrid"><img class="model-art" src="assets/images/models/dzire-owner.png" alt="Suzuki Dzire Hybrid" width="770" height="537" loading="lazy" /><h4>Dzire Hybrid</h4><span>Sedan &middot; 12V Hybrid</span><p>Hybrid sedan with a 378-litre luggage compartment and modern cabin features.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="mpv" data-model-slug="ertiga-hybrid"><img class="model-art" src="assets/images/models/ertiga-owner.png" alt="Suzuki Ertiga Hybrid" width="770" height="537" loading="lazy" /><h4>Ertiga Hybrid</h4><span>MPV &middot; 7 seats</span><p>Three rows of seating, with flexible space for passengers and luggage.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="mpv" data-model-slug="apv"><img class="model-art" src="assets/images/models/apv-owner.png" alt="Suzuki APV" width="770" height="537" loading="lazy" /><h4>APV</h4><span>MPV</span><p>Roomy cabin and flexible seating for passenger trips or business use.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+        <article class="model reveal" data-type="commercial" data-model-slug="carry"><img class="model-art" src="assets/images/models/carry-owner.png" alt="Suzuki Carry" width="770" height="537" loading="lazy" /><h4>Carry</h4><span>Commercial</span><p>Commercial vehicle with multiple body configurations for different work needs.</p><div class="model-shop"><p class="model-price">Price available on inquiry</p><button class="btn btn-primary order-button" type="button" disabled>Price not set</button></div></article>
+      </div>
+      <p class="shop-status" id="shopStatus" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="specs" id="specs">
+      <div class="specs-heading reveal">
+        <p class="eyebrow">From the S-Presso AGS brochure</p>
+        <h2>Small footprint. <span class="accent">Smart details.</span></h2>
+        <p>Key figures for the GL MT and GL AGS. Ask Suzuki Auto Silang to confirm the current variant and specification.</p>
+      </div>
+      <div class="spec-grid">
+        <article class="spec-card reveal"><span>Engine</span><strong>998 cc</strong><small>K10C, 3-cylinder with VVT</small></article>
+        <article class="spec-card reveal" style="--d:80ms"><span>Transmission</span><strong>5AGS / 5MT</strong><small>Auto Gear Shift or 5-speed manual</small></article>
+        <article class="spec-card reveal" style="--d:160ms"><span>Seating</span><strong>5 people</strong><small>Compact city car, five-seat layout</small></article>
+        <article class="spec-card reveal" style="--d:240ms"><span>Minimum turning radius</span><strong>4.5 m</strong><small>Easy to manoeuvre in tight spaces</small></article>
+        <article class="spec-card reveal" style="--d:320ms"><span>Ground clearance</span><strong>180 mm</strong><small>S-Presso brochure figure</small></article>
+        <article class="spec-card reveal" style="--d:400ms"><span>Luggage capacity</span><strong>239 L</strong><small>Room for everyday essentials</small></article>
+      </div>
+      <div class="specs-note reveal">
+        <p><strong>Engine output:</strong> 50 kW (67.98 PS) at 5,000 rpm · <strong>Maximum torque:</strong> 90 Nm at 3,500 rpm.</p>
+        <p class="muted">Specifications are from the supplied brochure (March 2025) and may vary by trim or model year.</p>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="features-heading reveal">
+        <p class="eyebrow">Everyday essentials</p>
+        <h2>Suzuki for <span class="accent">every kind of journey.</span></h2>
+      </div>
+      <div class="feature-cards">
+        <article class="feature-card reveal">
+          <span class="feature-number">01</span>
+          <h3>City friendly</h3>
+          <p>The S-Presso AGS brochure lists a 4.5-metre minimum turning radius and 180 mm ground clearance.</p>
+        </article>
+        <article class="feature-card reveal" style="--d:80ms">
+          <span class="feature-number">02</span>
+          <h3>Hybrid choices</h3>
+          <p>Fronx, Dzire, Ertiga and XL7 Hybrid models are featured in the brochures supplied for this site.</p>
+        </article>
+        <article class="feature-card reveal" style="--d:160ms">
+          <span class="feature-number">03</span>
+          <h3>Ready for adventure</h3>
+          <p>The Jimny brochures feature AllGrip Pro four-wheel drive in both 3-door and 5-door models.</p>
+        </article>
+        <article class="feature-card reveal" style="--d:240ms">
+          <span class="feature-number">04</span>
+          <h3>For the workday</h3>
+          <p>The Carry brochure shows a range of body configurations, while APV adds another practical people mover to the lineup.</p>
+        </article>
+      </div>
+      <p class="fineprint">These highlights summarize the supplied brochures. Equipment and availability may differ by grade and model year.</p>
+    </section>
+
+    <section class="parts" id="parts">
+      <div class="parts-panel">
+        <p class="eyebrow">Parts & accessories</p>
+        <h2>Find the right <span class="accent">parts.</span></h2>
+        <p class="muted">Ask Suzuki Auto Silang about parts and accessories for your Suzuki. Fitment and availability vary by model.</p>
+        <div class="parts-grid">
+          <article class="part-card reveal">
+            <span class="part-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 14 4l2.1-.7 1.4 1.7 2.2.4.4 2.2 1.7 1.4-.7 2.1.8 2-1.6 1.5-.4 2.2-2.2.4-1.4 1.7-2.1-.7-2 .8-1.5-1.6-2.2-.4-.4-2.2-1.7-1.4.7-2.1-.8-2 1.6-1.5.4-2.2 2.2-.4L12 3.2Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h3>Engine & filters</h3>
+            <p>Ask about engine components and replacement filters for your model.</p>
+          </article>
+          <article class="part-card reveal" style="--d:100ms">
+            <span class="part-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5m8.5 3.5h-5m-3.5 8.5v-5m-8.5-3.5h5"/></svg></span>
+            <h3>Brake components</h3>
+            <p>Confirm the right brake parts and fitment with the dealer.</p>
+          </article>
+          <article class="part-card reveal" style="--d:200ms">
+            <span class="part-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="m12 3 1.2 6m7.3 1.5-6 1.2m-1.5 9.3-1.2-6m-7.3-1.5 6-1.2"/></svg></span>
+            <h3>Wheels & tyres</h3>
+            <p>Check size, compatibility and availability before ordering.</p>
+          </article>
+          <article class="part-card reveal" style="--d:300ms">
+            <span class="part-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4l-5.1 5.1a2 2 0 0 0 2.8 2.8l5.1-5.1a5 5 0 0 0 6.4-6.4l-3 3-3-3 3.2-2.8Z"/></svg></span>
+            <h3>Accessories</h3>
+            <p>Ask which accessories are available for your Suzuki.</p>
+          </article>
+        </div>
+        <a href="#contact" class="btn btn-primary">Ask about parts</a>
+      </div>
+    </section>
+
+    <section class="buying" id="buying">
+      <div class="buying-inner reveal">
+        <p class="eyebrow">Take the next step</p>
+        <h2>Looking for your next <span class="accent">Suzuki?</span></h2>
+        <p>Ask Suzuki Auto Silang about current prices, model availability, financing and test-drive appointments.</p>
+        <a href="#contact" class="btn btn-primary">Talk to Suzuki Auto Silang</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <h2 class="section-title reveal">Frequently asked questions</h2>
+      <div class="acc">
+        <div class="acc-item reveal">
+          <button class="acc-q" aria-expanded="false"><span>What transmission options are listed for the S-Presso?</span><i></i></button>
+          <div class="acc-a"><p>The supplied brochure lists a five-speed manual (5MT) for GL MT and Suzuki Auto Gear Shift (5AGS) for GL AGS.</p></div>
+        </div>
+        <div class="acc-item reveal" style="--d:80ms">
+          <button class="acc-q" aria-expanded="false"><span>Which Suzuki models are featured here?</span><i></i></button>
+          <div class="acc-a"><p>The supplied brochures cover the S-Presso, Fronx, Jimny, Jimny 5-Door, Dzire, Ertiga, XL7 Hybrid, APV and Carry.</p></div>
+        </div>
+        <div class="acc-item reveal" style="--d:160ms">
+          <button class="acc-q" aria-expanded="false"><span>Which S-Presso equipment is listed?</span><i></i></button>
+          <div class="acc-a"><p>The S-Presso brochure lists ABS, Electronic Stability Program, Hill Hold Control, parking sensors and front dual airbags. Confirm equipment for the trim currently available.</p></div>
+        </div>
+        <div class="acc-item reveal" style="--d:240ms">
+          <button class="acc-q" aria-expanded="false"><span>Where can I confirm prices and availability?</span><i></i></button>
+          <div class="acc-a"><p>Contact Suzuki Auto Silang for current pricing, trim availability and colour options. The supplied brochures do not include a current price list.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <div class="reveal from-left">
+          <h2>Book a test drive or <span class="accent">get a quote</span></h2>
+          <p class="muted">Call, message or email Suzuki Auto Silang about a model, test drive or quote.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3l1.6 4.1-2 1.7a15.2 15.2 0 0 0 7.1 7.1l1.7-2 4.1 1.6v3a1.5 1.5 0 0 1-1.6 1.5A16.9 16.9 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5Z"/></svg></span>
+              <span><b>Telephone:</b> <a href="tel:+639279073924">0927 907 3924</a></span>
+            </li>
+            <li>
+              <span class="contact-icon contact-icon-viber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-4.8 0-8.5 3-8.5 7.1 0 2.2 1.2 4.1 3.2 5.3l-.6 3 3.2-1.5c.9.2 1.8.3 2.7.3 4.8 0 8.5-3 8.5-7.1S16.8 3.5 12 3.5Z"/><path d="M9.1 8.2c.2-.5.5-.6.8-.5l1 .8c.2.2.2.5.1.7l-.5.7a5.8 5.8 0 0 0 2.1 2.1l.7-.5c.2-.2.5-.1.7.1l.8 1c.2.3 0 .6-.4.8-.5.3-1.1.3-1.7 0a8.6 8.6 0 0 1-3.7-3.7c-.3-.6-.3-1.2.1-1.5Z"/></svg></span>
+              <span><b>Viber:</b> <a href="viber://chat?number=%2B639164013474">+63 916 401 3474</a></span>
+            </li>
+            <li>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="1.8"/><path d="m4.5 7 7.5 5.6L19.5 7"/></svg></span>
+              <span><b>Email:</b> <a href="mailto:info.suzukiautosilang@gmail.com">info.suzukiautosilang@gmail.com</a></span>
+            </li>
+            <li>
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 10.2c0 5-7 10.3-7 10.3S5 15.2 5 10.2a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+              <span><b>Address:</b> <a href="https://www.google.com/maps/search/?api=1&amp;query=Dragon%20Textile%20Compound%2C%20General%20Emilio%20Aguinaldo%20Highway%2C%20Lalaan%201%2C%20Silang%2C%20Philippines" target="_blank" rel="noopener noreferrer">Dragon Textile Compound, General Emilio Aguinaldo Highway, Lalaan 1, Silang, Philippines</a></span>
+            </li>
+            <li>
+              <span class="contact-icon contact-icon-facebook" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.4 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3H10v8z"/></svg></span>
+              <span><b>Facebook:</b> <a href="https://www.facebook.com/p/Suzuki-Auto-Silang-61577514884068/" target="_blank" rel="noopener noreferrer">Suzuki Auto Silang</a></span>
+            </li>
+          </ul>
+        </div>
+        <form class="form reveal from-right" id="form">
+          <div class="row">
+            <label>Full name<input type="text" name="name" maxlength="120" autocomplete="name" required /></label>
+            <label>Mobile number<input type="tel" name="phone" maxlength="30" autocomplete="tel" required /></label>
+          </div>
+          <div class="row">
+            <label>Email<input type="email" name="email" maxlength="254" autocomplete="email" /></label>
+            <label>Model
+              <select name="model">
+                <option value="s-presso-ags">S-Presso AGS</option><option value="fronx-hybrid">Fronx Hybrid</option><option value="xl7-hybrid-black-edition">XL7 Hybrid</option>
+                <option value="jimny-allgrip-pro">Jimny</option><option value="jimny-5-door-allgrip-pro">Jimny 5-Door</option><option value="dzire-hybrid">Dzire Hybrid</option>
+                <option value="ertiga-hybrid">Ertiga Hybrid</option><option value="apv">APV</option><option value="carry">Carry</option>
+              </select>
+            </label>
+          </div>
+          <label>I want to
+            <select name="intent"><option value="test_drive">Book a test drive</option><option value="quote">Get a quote</option><option value="financing">Ask about financing</option></select>
+          </label>
+          <label>Message<textarea name="message" rows="3" maxlength="2000"></textarea></label>
+          <button class="btn btn-primary" type="submit">Send Inquiry</button>
+          <p class="form-ok" id="formOk" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="brand brand-footer"><img class="brand-logo" src="assets/images/icons/suzuki-auto-silang.png" alt="Suzuki Auto Silang" width="390" height="125" /></div>
+        <p class="muted">Explore Suzuki models and contact the team at Suzuki Auto Silang.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#models">Models</a><a href="#s-presso">Featured Models</a><a href="#specs">Specifications</a><a href="#contact">Contact</a>
+        <a href="https://www.facebook.com/p/Suzuki-Auto-Silang-61577514884068/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
+    </div>
+    <p class="copy">Suzuki Auto Silang. Suzuki names and trademarks belong to their respective owners.</p>
+  </footer>
+
+  <!-- FLOAT BAR -->
+  <nav class="float-bar" id="floatBar" aria-label="Quick actions">
+    <a href="#models"><span>&#9906;</span>Models</a>
+    <a href="#specs"><span>&#9881;</span>Specs</a>
+    <a href="#contact"><span>&#8369;</span>Get a Quote</a>
+    <a href="#contact"><span>&#9993;</span>Contact</a>
+  </nav>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/shop.js"></script>
+</body>
+</html>
